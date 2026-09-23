@@ -5,7 +5,7 @@ Es un sistema de registro y consulta de productos. En este se pueden registrar e
 
 # ¿Qué tecnologías utiliza?
 - PHP 8.2
-- Apache
+- Apache 2.4
 - CSS
 - MariaDB (MySQL)
 
