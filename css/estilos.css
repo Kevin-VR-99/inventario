@@ -197,3 +197,49 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+
+
+/* ===== Botón editar (amarillo con lápiz) ===== */
+.boton-editar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background-color: #facc15;
+    color: #1f2937;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid #eab308;
+}
+
+.boton-editar svg {
+    flex-shrink: 0;
+}
+
+.boton-editar:hover {
+    background-color: #eab308;
+}
+
+/* ===== Botones de la pantalla de edición ===== */
+.acciones-formulario {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.boton-cancelar {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #e5e7eb;
+    color: #1f2937;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.boton-cancelar:hover {
+    background-color: #d1d5db;
+}
