@@ -21,7 +21,6 @@ $estado = $_GET['estado'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -70,6 +69,10 @@ $estado = $_GET['estado'] ?? '';
             <div class="mensaje error">La cantidad debe ser un número.</div>
         <?php endif; ?>
 
+        <?php if ($estado === 'nombre_corto'): ?>
+            <div class="mensaje error">El nombre debe tener más de 3 caracteres.</div>
+        <?php endif; ?>
+
         <?php if ($estado === 'cambio_invalido'): ?>
             <div class="mensaje error">No se pudo actualizar el estado.</div>
         <?php endif; ?>
@@ -82,6 +85,7 @@ $estado = $_GET['estado'] ?? '';
                     type="text"
                     id="nombre"
                     name="nombre"
+                    minlength="4"
                     maxlength="60"
                     placeholder="Ejemplo: Café"
                     required
@@ -212,5 +216,4 @@ $estado = $_GET['estado'] ?? '';
 </footer>
 
 </body>
-
 </html>
