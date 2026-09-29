@@ -21,6 +21,7 @@ $estado = $_GET['estado'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -197,6 +198,16 @@ $estado = $_GET['estado'] ?? '';
                                         </form>
                                     <?php endif; ?>
 
+                                    <form
+                                        action="eliminar.php"
+                                        method="POST"
+                                        class="form-estado"
+                                        onsubmit="return confirm('¿Seguro que deseas eliminar este producto? Esta acción no se puede deshacer.');"
+                                    >
+                                        <input type="hidden" name="id" value="<?php echo (int) $producto['id']; ?>">
+                                        <button type="submit" class="btn-eliminar">Eliminar</button>
+                                    </form>
+
                                 </div>
                             </td>
 
@@ -216,4 +227,5 @@ $estado = $_GET['estado'] ?? '';
 </footer>
 
 </body>
+
 </html>

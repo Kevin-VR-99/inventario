@@ -232,6 +232,21 @@ footer {
     }
 }
 
+/* ===== Botón eliminar ===== */
+.btn-eliminar {
+    width: auto;
+    padding: 8px 12px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.btn-eliminar:hover {
+    background-color: #b52b27;
+}
 
 /* ===== Botón editar (amarillo con lápiz) ===== */
 .boton-editar {
@@ -277,6 +292,7 @@ footer {
 .boton-cancelar:hover {
     background-color: #d1d5db;
 }
+
 /* ===== Contenedor de acciones en la tabla ===== */
 .acciones-tabla {
     display: flex;
