@@ -7,7 +7,6 @@ $consulta = $conexion->query(
         id,
         nombre,
         cantidad,
-        estado,
         fecharegistro
     FROM productos
     ORDER BY id asc'
@@ -20,13 +19,13 @@ $estado = $_GET['estado'] ?? '';
 
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
 
     <meta
         name="viewport"
-        content="width=device-width, initial-scale=1.0">
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>INVENTARIO</title>
 
@@ -72,15 +71,9 @@ $estado = $_GET['estado'] ?? '';
                 </div>
             <?php endif; ?>
 
-            <?php if ($estado === 'estado_actualizado'): ?>
-                <div class="mensaje correcto">
-                    El estado del producto se actualizó correctamente.
-                </div>
-            <?php endif; ?>
-
-            <?php if ($estado === 'cambio_invalido'): ?>
+            <?php if ($estado === 'nombre_corto'): ?>
                 <div class="mensaje error">
-                    No se pudo actualizar el estado.
+                    El nombre debe tener más de 3 caracteres.
                 </div>
             <?php endif; ?>
 
@@ -94,9 +87,11 @@ $estado = $_GET['estado'] ?? '';
                         type="text"
                         id="nombre"
                         name="nombre"
+                        minlength="4"
                         maxlength="100"
                         placeholder="Ejemplo: Café"
-                        required>
+                        required
+                    >
                 </div>
 
                 <div class="campo">
@@ -109,7 +104,8 @@ $estado = $_GET['estado'] ?? '';
                         id="cantidad"
                         name="cantidad"
                         placeholder="Ejemplo: 10"
-                        required>
+                        required
+                    >
                 </div>
 
                 <button type="submit">
@@ -138,14 +134,13 @@ $estado = $_GET['estado'] ?? '';
                             <th>Cantidad</th>
                             <th>Estado</th>
                             <th>Fecha</th>
-                            <th>Acciones</th>
                         </tr>
                     </thead>
 
                     <tbody>
                         <?php if (count($productos) === 0): ?>
                             <tr>
-                                <td colspan="6" class="sin-registros">
+                                <td colspan="5" class="sin-registros">
                                     No hay productos registrados.
                                 </td>
                             </tr>
@@ -170,11 +165,7 @@ $estado = $_GET['estado'] ?? '';
                                 </td>
 
                                 <td>
-                                    <?php if (($producto['estado'] ?? 'auto') === 'revision'): ?>
-                                        <span class="estado revision">
-                                            Revisión
-                                        </span>
-                                    <?php elseif ($producto['cantidad'] > 0): ?>
+                                    <?php if ($producto['cantidad'] > 0): ?>
                                         <span class="estado disponible">
                                             Disponible
                                         </span>
@@ -186,27 +177,9 @@ $estado = $_GET['estado'] ?? '';
                                 </td>
 
                                 <td>
-                                    <?php echo $producto['fecharegistro']; ?>
-                                </td>
-
-                                <td>
-                                    <?php if (($producto['estado'] ?? 'auto') === 'revision'): ?>
-                                        <form action="estado.php" method="POST" class="form-estado">
-                                            <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
-                                            <input type="hidden" name="estado" value="auto">
-                                            <button type="submit" class="boton-secundario">
-                                                Poner en disponible
-                                            </button>
-                                        </form>
-                                    <?php else: ?>
-                                        <form action="estado.php" method="POST" class="form-estado">
-                                            <input type="hidden" name="id" value="<?php echo $producto['id']; ?>">
-                                            <input type="hidden" name="estado" value="revision">
-                                            <button type="submit" class="boton-revision">
-                                                Poner en revisión
-                                            </button>
-                                        </form>
-                                    <?php endif; ?>
+                                    <?php
+                                    echo $producto['fecharegistro'];
+                                    ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -220,5 +193,4 @@ $estado = $_GET['estado'] ?? '';
         U1. Planeación del proceso de desarrollo de software
     </footer>
 </body>
-
 </html>
