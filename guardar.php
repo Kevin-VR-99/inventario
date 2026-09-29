@@ -25,6 +25,10 @@ if (!is_numeric($cantidad)) {
     exit;
 }
 
+if ((int)$cantidad < 0) {
+    header('Location: index.php?estado=cantidad_invalida');
+    exit;
+}
 $sentencia = $conexion->prepare(
     'INSERT INTO productos (nombre, cantidad)
      VALUES (:nombre, :cantidad)'
