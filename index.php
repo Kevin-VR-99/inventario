@@ -8,6 +8,7 @@ $consulta = $conexion->query(
         id,
         nombre,
         cantidad,
+        estado,
         fecharegistro
     FROM productos
     ORDER BY id asc'
@@ -20,6 +21,7 @@ $estado = $_GET['estado'] ?? '';
 ?>
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,6 +54,10 @@ $estado = $_GET['estado'] ?? '';
             <div class="mensaje correcto">Producto actualizado correctamente.</div>
         <?php endif; ?>
 
+        <?php if ($estado === 'estado_actualizado'): ?>
+            <div class="mensaje correcto">El estado del producto se actualizó correctamente.</div>
+        <?php endif; ?>
+
         <?php if ($estado === 'no_encontrado'): ?>
             <div class="mensaje error">El producto que intentó editar no existe.</div>
         <?php endif; ?>
@@ -62,6 +68,10 @@ $estado = $_GET['estado'] ?? '';
 
         <?php if ($estado === 'cantidad_invalida'): ?>
             <div class="mensaje error">La cantidad debe ser un número.</div>
+        <?php endif; ?>
+
+        <?php if ($estado === 'cambio_invalido'): ?>
+            <div class="mensaje error">No se pudo actualizar el estado.</div>
         <?php endif; ?>
 
         <form action="guardar.php" method="POST">
@@ -140,7 +150,9 @@ $estado = $_GET['estado'] ?? '';
                             <td><?php echo $producto['cantidad']; ?></td>
 
                             <td>
-                                <?php if ($producto['cantidad'] > 0): ?>
+                                <?php if (($producto['estado'] ?? 'auto') === 'revision'): ?>
+                                    <span class="estado revision">Revisión</span>
+                                <?php elseif ($producto['cantidad'] > 0): ?>
                                     <span class="estado disponible">Disponible</span>
                                 <?php else: ?>
                                     <span class="estado agotado">Sin existencia</span>
@@ -150,16 +162,38 @@ $estado = $_GET['estado'] ?? '';
                             <td><?php echo $producto['fecharegistro']; ?></td>
 
                             <td>
-                                <a
-                                    class="boton-editar"
-                                    href="editar.php?id=<?php echo (int) $producto['id']; ?>"
-                                    title="Editar producto"
-                                >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
-                                    </svg>
-                                    Editar
-                                </a>
+                                <div class="acciones-tabla">
+
+                                    <a
+                                        class="boton-editar"
+                                        href="editar.php?id=<?php echo (int) $producto['id']; ?>"
+                                        title="Editar producto"
+                                    >
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                            <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                                        </svg>
+                                        Editar
+                                    </a>
+
+                                    <?php if (($producto['estado'] ?? 'auto') === 'revision'): ?>
+                                        <form action="estado.php" method="POST" class="form-estado">
+                                            <input type="hidden" name="id" value="<?php echo (int) $producto['id']; ?>">
+                                            <input type="hidden" name="estado" value="auto">
+                                            <button type="submit" class="boton-secundario">
+                                                Poner en disponible
+                                            </button>
+                                        </form>
+                                    <?php else: ?>
+                                        <form action="estado.php" method="POST" class="form-estado">
+                                            <input type="hidden" name="id" value="<?php echo (int) $producto['id']; ?>">
+                                            <input type="hidden" name="estado" value="revision">
+                                            <button type="submit" class="boton-revision">
+                                                Poner en revisión
+                                            </button>
+                                        </form>
+                                    <?php endif; ?>
+
+                                </div>
                             </td>
 
                         </tr>
@@ -178,4 +212,5 @@ $estado = $_GET['estado'] ?? '';
 </footer>
 
 </body>
+
 </html>
