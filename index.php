@@ -223,7 +223,7 @@ $estado = $_GET['estado'] ?? '';
 </main>
 
 <footer>
-    U1. Planeación del proceso de desarrollo de software
+    U1. Planeación del proceso de desarrollo de software mly
 </footer>
 
 </body>
