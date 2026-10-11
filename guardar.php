@@ -1,6 +1,24 @@
 <?php
 
 require_once __DIR__ . '/config/conexion.php';
+require_once "funciones.php";
+
+$nombre = $_POST["nombre"] ?? "";
+$cantidad = $_POST["cantidad"] ?? "";
+
+$errorNombre = validarNombre($nombre);
+$errorCantidad = validarCantidad($cantidad);
+
+if ($errorNombre !== true) {
+    die($errorNombre);
+}
+
+if ($errorCantidad !== true) {
+    die($errorCantidad);
+}
+
+$nombre = trim($nombre);
+$cantidad = (int) $cantidad;
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: index.php');
