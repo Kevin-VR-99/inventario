@@ -202,7 +202,7 @@ $estado = $_GET['estado'] ?? '';
                                         action="eliminar.php"
                                         method="POST"
                                         class="form-estado"
-                                        onsubmit="return confirm('¿Seguro que deseas eliminar este producto? Esta acción no se puede deshacer.');"
+                                        onsubmit="return confirm('¿Seguro que quieres  eliminar este producto? Esta acción no se puede deshacer.');"
                                     >
                                         <input type="hidden" name="id" value="<?php echo (int) $producto['id']; ?>">
                                         <button type="submit" class="btn-eliminar">Eliminar</button>
@@ -223,7 +223,7 @@ $estado = $_GET['estado'] ?? '';
 </main>
 
 <footer>
-    U1. Planeación del proceso de desarrollo de software
+    U1. Planeación del proceso de desarrollo de software mly
 </footer>
 
 </body>
