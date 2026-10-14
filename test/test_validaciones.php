@@ -3,10 +3,17 @@
 require_once __DIR__ . '/../validaciones.php';
 
 $casos = [
-    [ "nombre válido: Teclado", "Teclado", true ],
-    [ "nombre vacío", "", false ],
-    [ "nombre con espacios", "   ", false ],
-    [ "nombre válido: Mouse", "Mouse", true ],
+    // Un nombre válido devuelve null
+    [ "nombre válido: Teclado", "Teclado", null ],
+    
+    // Un nombre vacío devuelve 'incompleto'
+    [ "nombre vacío", "", 'incompleto' ],
+    
+    // Un nombre con solo espacios, al hacerle trim() queda vacío, por lo que devuelve 'incompleto'
+    [ "nombre con espacios", "   ", 'incompleto' ],
+    
+    // Otro nombre válido devuelve null
+    [ "nombre válido: Mouse", "Mouse", null ],
 ];
 
 $correctas = 0;
