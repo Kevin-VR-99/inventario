@@ -7,7 +7,7 @@
  */
 function validarNombre(string $nombre): ?string
 {
-    //$nombre = trim($nombre);
+    $nombre = trim($nombre);
 
     if ($nombre === '') {
         return 'incompleto';
