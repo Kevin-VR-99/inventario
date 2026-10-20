@@ -67,7 +67,7 @@ $estado = $_GET['estado'] ?? '';
         <?php endif; ?>
 
         <?php if ($estado === 'cantidad_invalida'): ?>
-            <div class="mensaje error">La cantidad debe ser un número.</div>
+            <div class="mensaje error">La cantidad debe ser un número válido.</div>
         <?php endif; ?>
 
         <?php if ($estado === 'nombre_corto'): ?>
@@ -86,7 +86,7 @@ $estado = $_GET['estado'] ?? '';
                     type="text"
                     id="nombre"
                     name="nombre"
-                    minlength="4"
+
                     maxlength="60"
                     placeholder="Ejemplo: Café"
                     required
@@ -100,7 +100,7 @@ $estado = $_GET['estado'] ?? '';
                     id="cantidad"
                     name="cantidad"
                     placeholder="Ejemplo: 10"
-                    required
+                  
                 >
             </div>
 
