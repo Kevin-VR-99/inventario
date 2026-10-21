@@ -59,7 +59,7 @@ jobs:
           mysql --protocol=TCP \
             --host="$DB_HOST" \
             --user="$DB_USER" \
-            "$DB_NAME" < tests/estructura_pruebas.sql
+            "$DB_NAME" < test/estructura_pruebas.sql
 
       - name: Ejecutar pruebas unitarias
         run: php test/test_validaciones.php
