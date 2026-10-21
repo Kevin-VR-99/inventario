@@ -31,9 +31,9 @@ jobs:
 
     env:
       DB_HOST: 127.0.0.1
-      DB_NAME: inventario_pruebas
-      DB_USER: root
-      DB_PASSWORD: 
+      DB_NAME: inventariopruebas
+      DB_USER: usuario_pruebas
+      DB_PASSWORD: clave_pruebas
 
     steps:
       - name: Descargar código
@@ -47,7 +47,7 @@ jobs:
 
       - name: Verificar sintaxis
         run: |
-          php -l src/validaciones.php
+          php -l validaciones.php
           php -l tests/test_validaciones.php
           php -l tests/conexion_pruebas.php
           php -l tests/test_integracion_productos.php
