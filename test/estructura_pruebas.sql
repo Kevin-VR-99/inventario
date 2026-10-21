@@ -1,4 +1,4 @@
-USE inventario;
+USE inventario_puebas;
 
 DROP TABLE IF EXISTS productos;
 
