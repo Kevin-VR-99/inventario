@@ -48,9 +48,9 @@ jobs:
       - name: Verificar sintaxis
         run: |
           php -l validaciones.php
-          php -l tests/test_validaciones.php
-          php -l tests/conexion_pruebas.php
-          php -l tests/test_integracion_productos.php
+          php -l test/test_validaciones.php
+          php -l test/conexion_pruebas.php
+          php -l test/test_integracion_productos.php
 
       - name: Crear tabla de pruebas
         env:
@@ -62,7 +62,7 @@ jobs:
             "$DB_NAME" < tests/estructura_pruebas.sql
 
       - name: Ejecutar pruebas unitarias
-        run: php tests/test_validaciones.php
+        run: php test/test_validaciones.php
 
       - name: Ejecutar prueba de integración
-        run: php tests/test_integracion_productos.php
+        run: php test/test_integracion_productos.php
